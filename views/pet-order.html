@@ -6,16 +6,15 @@
 
 <!-- Form for ordering a pet -->
 <form action="#" method="post">
-    <label for="animal">Animal:</label>
-    <input type="text" id="animal" name="animal" required><br><br>
+    <label for="pet">What kind of animal would you like to order?</label>
+    <input type="text" id="pet" name="pet" required><br><br>
 
     <label for="color">Color:</label>
     <select id="color" name="color" required>
-        <option value="" disabled selected>Select a color</option>
+        <option value="No" disabled selected>Select a color</option>
         <option value="black">Black</option>
         <option value="brown">Brown</option>
         <option value="white">White</option>
-        <!-- Add more color options as needed -->
     </select><br><br>
 
     <button type="submit">Place Order</button>
