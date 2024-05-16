@@ -63,6 +63,14 @@ $f3->route('GET|POST /order', function($f3){
 //robotic pet page
 $f3->route('GET|POST /roboticpet', function($f3){
 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $accessories = isset($_POST['accessories']) ? $_POST['accessories'] : array();
+        $pet = $f3->get("SESSION.pet");
+        $pet->setAccessories($accessories);
+        $f3->set("SESSION.pet", $pet);
+        $f3->reroute('summary');
+    }
+
     //add reroute to summary
     //$f3->reroute('summary');
     $view = new Template();
