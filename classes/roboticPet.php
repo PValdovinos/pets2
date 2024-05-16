@@ -4,17 +4,17 @@ class RoboticPet extends Pet
 {
 
     // Accessories field
-    private $accessories = array();
+    private $_accessories = array();
 
     // Constructor
 
     public function __construct($accessory)
     {
-        $this->accessories[$accessory];
+        $this->_accessories[$accessory];
     }
 
     public function getAccessories()
     {
-        return $this->accessories;
+        return $this->_accessories;
     }
 }
