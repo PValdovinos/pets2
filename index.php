@@ -34,19 +34,25 @@ $f3->route('GET|POST /order', function($f3){
         // Get the data
         $pet = $_POST['pet'];
         $color = $_POST['color'];
+        $type = $_POST['type'];
 
         // Validate the data
-        if(!empty('pet') && ($color != 'No'))
+        if(!empty($pet) && ($color != 'No') && isset($type))
         {
-            // Data is invalid
-            echo "Please supply a pet type";
-
-            // Data is valid
-            $f3->set('SESSION.pet', $pet);
-
-            $f3->set('SESSION.color', $color);
-
-            $f3->reroute('summary');
+            if($type === "robotic")
+            {
+                //construct new roboticpet object and add to session
+                $f3->set("SESSION.pet", new RoboticPet($pet, $color));
+                //route to roboticpet page
+                //add reroute to summar on roboticpet
+                $f3->reroute('roboticpet');
+            }else{
+                //construct new stuffedpet object and add to session
+                $f3->set("SESSION.pet", new stuffedPet($pet, $color));
+                //route to stuffedpet page
+                //add reroute to summar on stuffedpet
+                $f3->reroute('stuffedpet');
+            }
         }
     }
 
@@ -54,7 +60,25 @@ $f3->route('GET|POST /order', function($f3){
     $view = new Template();
     echo $view->render('views/pet-order.html');
 });
+//robotic pet page
+$f3->route('GET|POST /roboticpet', function($f3){
 
+    //add reroute to summary
+    //$f3->reroute('summary');
+    $view = new Template();
+    echo $view->render('views/roboticpet.html');
+});
+
+//stuffed pet page
+$f3->route('GET|POST /stuffedpet', function($f3){
+
+    //add reroute to summary
+    //$f3->reroute('summary');
+    $view = new Template();
+    echo $view->render('views/stuffedpet.html');
+});
+
+//route to summary
 $f3->route('GET|POST /summary', function($f3){
 
     $view = new Template();
@@ -64,4 +88,3 @@ $f3->route('GET|POST /summary', function($f3){
 // Run Fat-Free
 $f3->run();
 
-?>
