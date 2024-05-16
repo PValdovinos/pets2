@@ -71,7 +71,7 @@ $f3->route('GET|POST /roboticpet', function($f3){
 
 //stuffed pet page
 $f3->route('GET|POST /stuffedpet', function($f3){
-
+    var_dump($f3->get('SESSION.pet'));
     //add reroute to summary
     //$f3->reroute('summary');
     $view = new Template();
