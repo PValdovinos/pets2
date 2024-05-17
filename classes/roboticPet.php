@@ -6,7 +6,7 @@ class RoboticPet extends Pet
     // Accessories field
     private $_accessories = array();
 
-    public function __construct($animal, $name = "unknown", $color = "???", $accessories = array())
+    public function __construct($animal, $name = "unknown", $color = "unknown", $accessories = array())
     {
         parent::__construct($animal, $color);
         $this->_accessories = $accessories;
