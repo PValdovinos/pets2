@@ -76,7 +76,7 @@ $f3->route('GET|POST /roboticpet', function($f3){
         $pet = $f3->get("SESSION.pet");
         $pet->setAccessories($accessories);
         $f3->set("SESSION.pet", $pet);
-        $f3->reroute('summary');
+        $f3->reroute('roboticpetsummary');
     }
 
     //add reroute to summary
@@ -128,7 +128,11 @@ $f3->route('GET|POST /stuffedpetsummary', function($f3){
     echo $view->render('views/stuffedpetsummary.html');
 });
 
+$f3->route('GET|POST /roboticpetsummary', function($f3){
 
+    $view = new Template();
+    echo $view->render('views/roboticpetsummary.html');
+});
 
 // Run Fat-Free
 $f3->run();
