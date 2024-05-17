@@ -22,4 +22,12 @@ class RoboticPet extends Pet
         $this->_accessories = $accessories;
     }
 
+    public function getAnimal() {
+        return $this->animal;
+    }
+
+    public function getColor() {
+        return $this->color;
+    }
+
 }
