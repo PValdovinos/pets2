@@ -72,10 +72,14 @@ $f3->route('GET|POST /order', function($f3){
 $f3->route('GET|POST /roboticpet', function($f3){
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $pet = $_POST['pet'];
+        $color = $_POST['color'];
         $accessories = isset($_POST['accessories']) ? $_POST['accessories'] : array();
-        $pet = $f3->get("SESSION.pet");
-        $pet->setAccessories($accessories);
-        $f3->set("SESSION.pet", $pet);
+        $roboticPet = $f3->get("SESSION.pet");
+        $roboticPet->setAnimal($pet);
+        $roboticPet->setColor($color);
+        $roboticPet->setAccessories($accessories);
+        $f3->set("SESSION.pet", $roboticPet);
         $f3->reroute('roboticpetsummary');
     }
 
