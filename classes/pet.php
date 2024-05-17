@@ -8,7 +8,7 @@ class Pet
 
     //constructor
 
-    public function __construct($_animal="unknown", $_color="unknown")
+    public function __construct($_animal, $_color)
     {
         $this->_animal = $_animal;
         $this->_color = $_color;
@@ -17,16 +17,26 @@ class Pet
     /**
      * @return mixed|string
      */
-    public function getAnimal(): mixed
+    public function getAnimal()
     {
         return $this->_animal;
     }
 
+
     /**
      * @param mixed|string $animal
      */
-    public function setAnimal(mixed $animal): void
+    public function setAnimal($animal)
     {
         $this->_animal = $animal;
+    }
+
+    public function setColor($color)
+    {
+         $this->_color = $color;
+    }
+    public function getColor()
+    {
+        return $this->_color;
     }
 }

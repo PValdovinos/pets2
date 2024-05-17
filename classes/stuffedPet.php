@@ -13,12 +13,12 @@ class stuffedPet extends Pet
         $this->_material = $_material;
     }
 
-    public function getSize(): mixed
+    public function getSize()
     {
         return $this->_size;
     }
 
-    public function setSize(mixed $size)
+    public function setSize($size)
     {
         $this->_size = $size;
     }
@@ -28,7 +28,7 @@ class stuffedPet extends Pet
         return $this->_stuffingType;
     }
 
-    public function setStuffingType(mixed $stuffingType)
+    public function setStuffingType($stuffingType)
     {
         $this->_stuffingType = $stuffingType;
     }
@@ -38,7 +38,7 @@ class stuffedPet extends Pet
         return $this->_material;
     }
 
-    public function setMaterial(mixed $material)
+    public function setMaterial($material)
     {
         $this->_material = $material;
     }

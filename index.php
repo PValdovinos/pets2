@@ -36,9 +36,12 @@ $f3->route('GET|POST /order', function($f3){
         $color = $_POST['color'];
         $type = $_POST['type'];
 
+
+
         // Validate the data
-        if(!empty($pet) && ($color != 'No') && isset($type))
+        if(isset($pet) && isset($color) && isset($type))
         {
+
             if($type === "robotic")
             {
                 //construct new roboticpet object and add to session
@@ -47,10 +50,15 @@ $f3->route('GET|POST /order', function($f3){
                 //add reroute to summar on roboticpet
                 $f3->reroute('roboticpet');
             }else{
+
                 //construct new stuffedpet object and add to session
-                $f3->set("SESSION.pet", new stuffedPet($pet, $color));
+                $f3->set('SESSION.pet', new stuffedPet($pet, $color));
                 //route to stuffedpet page
                 //add reroute to summar on stuffedpet
+
+                $f3->get('SESSION.pet')->setAnimal($pet);
+                $f3->get('SESSION.pet')->setColor($color);
+                //var_dump($f3->get('SESSION.pet'));
                 $f3->reroute('stuffedpet');
             }
         }
@@ -79,19 +87,48 @@ $f3->route('GET|POST /roboticpet', function($f3){
 
 //stuffed pet page
 $f3->route('GET|POST /stuffedpet', function($f3){
-    var_dump($f3->get('SESSION.pet'));
-    //add reroute to summary
-    //$f3->reroute('summary');
+    //var_dump($f3->get('SESSION.pet'));
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $size = $_POST['size'];
+        $material = $_POST['material'];
+        $stuffing = $_POST['stuffing'];
+
+        if(isset($size) && isset($material) && isset($stuffing)){
+            $f3->get('SESSION.pet')->setSize($size);
+            $f3->get('SESSION.pet')->setMaterial($material);
+            $f3->get('SESSION.pet')->setStuffingType($stuffing);
+
+            //add reroute to summary
+            $f3->reroute('stuffedpetsummary');
+        }
+    }
+
     $view = new Template();
     echo $view->render('views/stuffedpet.html');
 });
 
+/**
 //route to summary
 $f3->route('GET|POST /summary', function($f3){
+    if('SESSION.pet' instanceof stuffedPet)
+    {
+        $f3->reroute('stuffedpetsummary');
+    }
 
     $view = new Template();
     echo $view->render('views/order-summary.html');
 });
+ * */
+
+//stuffed pet summary page
+$f3->route('GET|POST /stuffedpetsummary', function($f3){
+
+    $view = new Template();
+    echo $view->render('views/stuffedpetsummary.html');
+});
+
+
 
 // Run Fat-Free
 $f3->run();
