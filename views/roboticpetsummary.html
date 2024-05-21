@@ -10,8 +10,8 @@
 <body>
 <h1>ROBOTIC PET SUMMARY!</h1>
 
-<p> TYPE: {{ @SESSION.pet->getAnimal() }}</p>
-<p> COLOR: {{ @SESSION.pet->getColor() }}</p>
+<p> TYPE: {{ @SESSION.pet->getAnimal()}}</p>
+<p> COLOR: {{ @SESSION.pet->getColor()}}</p>
 <p> ACCESSORIES:
 <ul>
     <repeat group="{{ @SESSION.pet->getAccessories() }}" value="{{ @accessory }}">

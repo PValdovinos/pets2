@@ -45,7 +45,9 @@ $f3->route('GET|POST /order', function($f3){
             if($type === "robotic")
             {
                 //construct new roboticpet object and add to session
-                $f3->set("SESSION.pet", new RoboticPet($pet, $color));
+                $roboticPet = new RoboticPet($pet, $color);
+                var_dump($roboticPet);
+                $f3->set("SESSION.pet", $roboticPet);
                 //route to roboticpet page
                 //add reroute to summar on roboticpet
                 $f3->reroute('roboticpet');
@@ -133,6 +135,8 @@ $f3->route('GET|POST /stuffedpetsummary', function($f3){
 });
 
 $f3->route('GET|POST /roboticpetsummary', function($f3){
+
+    var_dump($f3->get('SESSION.pet'));
 
     $view = new Template();
     echo $view->render('views/roboticpetsummary.html');

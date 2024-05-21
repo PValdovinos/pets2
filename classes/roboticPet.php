@@ -6,7 +6,7 @@ class RoboticPet extends Pet
     // Accessories field
     private $_accessories = array();
 
-    public function __construct($animal, $name = "unknown", $color = "???", $accessories = array())
+    public function __construct($animal, $color = "???", $accessories = array())
     {
         parent::__construct($animal, $color);
         $this->_accessories = $accessories;
@@ -21,5 +21,24 @@ class RoboticPet extends Pet
     {
         $this->_accessories = $accessories;
     }
+
+    /*public function getAnimal()
+    {
+        return $this->_animal;
+    }
+
+    public function setAnimal($animal)
+    {
+        $this->_animal = $animal;
+    }
+
+    public function setColor($color)
+    {
+        $this->_color = $color;
+    }
+    public function getColor()
+    {
+        return $this->_color;
+    }*/
 
 }
